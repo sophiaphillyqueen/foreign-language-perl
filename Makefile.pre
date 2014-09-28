@@ -22,10 +22,14 @@
 
 :bna:x:header.psg.pl:main.psg.pl
 :redun:x:flp-parts:
+:bna:x:goodarray.fn.pl
+:redun:x:flp-parts:
+
 
 
 :-:
 :-:all: foreign-language-perl .gitignore
+:->:perl -c foreign-language-perl
 :->:chmod 755 foreign-language-perl
 :-:
 :-:Makefile: configure Makefile.pre proj-info.txt

@@ -17,19 +17,4 @@
 # ########################
 #
 
-my $max_tot_chances = 1000;
-
-
-
-# Other variables:
-
-my $question_side = "qst";
-my $answer_side = "ans";
-
-my @active_hand = ();
-# The set of cards the user is currently going through
-
-my @waiting_deck = ();
-# The set of cards that have not yet entered circulation
-
 
