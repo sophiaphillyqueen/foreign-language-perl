@@ -20,9 +20,13 @@
 :setvar:perl-loc:qry:which perl
 :argv:arguma:
 
+:bna:x:header.psg.pl:main.psg.pl
+:redun:x:flp-parts:
+
 
 :-:
 :-:all: foreign-language-perl .gitignore
+:->:chmod 755 foreign-language-perl
 :-:
 :-:Makefile: configure Makefile.pre proj-info.txt
 :->:sh configure
@@ -31,6 +35,12 @@
 	:echo:shl:var:argumu
 	:*:'
 :eachend:
+:-:
+:-:install: all
+:->:cp foreign-language-perl "$(farm_bindir)/."
+:-:
+:-:uninstall:
+:->:rm -rf  "$(farm_bindir)/foreign-language-perl"
 
 
 :-:
@@ -44,13 +54,27 @@
 
 :-:
 :-:foreign-language-perl: Makefile
+:foreach:flp-parts:thisp:
+	:*: $(srcdir)/
+	:echo:var:thisp:
+:eachend:
 :->:mkdir -p tmp
 :->:echo "#!
 :s:1:
 :echo:var:perl-loc:
-:*:" > tmp/Makefile
+:*:" > tmp/foreign-language-perl
 :->:echo "use strict;" >> tmp/foreign-language-perl
+:foreach:flp-parts:thisp:
+	:->:echo >> tmp/foreign-language-perl
+	:->:echo "# line 1 \"$(srcdir)/
+	:echo:var:thisp:
+	:*:\"" >> tmp/foreign-language-perl
+	:->:cat "$(srcdir)/
+	:echo:var:thisp:
+	:*:" >> tmp/foreign-language-perl
+:eachend:
 :->:mv tmp/foreign-language-perl .
+:->:chmod 755 foreign-language-perl
 
 
 
